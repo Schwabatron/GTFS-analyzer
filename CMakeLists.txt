@@ -3,4 +3,11 @@ project(GTFS_analyzer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(GTFS_analyzer main.cpp)
+include_directories(include)
+
+
+add_executable(gtfs-analyzer
+    src/main.cpp
+    src/Arg_Parser.cpp
+    src/GTFS_Handler.cpp
+)

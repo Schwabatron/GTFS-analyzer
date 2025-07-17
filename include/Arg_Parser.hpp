@@ -1,10 +1,10 @@
-#ifndef PARSER_HPP
-#define PARSER_HPP
+#ifndef ARG_PARSER_HPP
+#define ARG_PARSER_HPP
 
 #include <string>
 #include <vector>
 
-struct Parser
+struct Arg_Parser
 {
     std::string input_file;
     std::string output_location;
@@ -13,7 +13,7 @@ struct Parser
 };
 
 
-Parser Parse_arguments(const std::vector<std::string>& args);
+Arg_Parser Parse_arguments(const std::vector<std::string>& args);
 
 
 #endif

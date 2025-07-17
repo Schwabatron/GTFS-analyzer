@@ -1,0 +1,17 @@
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+cmake_install.cmake
+
+# Visual Studio files
+*.sln
+*.vcxproj*
+*.filters
+*.user
+
+# VSCode settings (optional)
+.vscode/
+
+# macOS / Windows clutter (optional)
+.DS_Store
+Thumbs.db

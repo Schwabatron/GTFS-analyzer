@@ -1,11 +1,11 @@
-#include "Include/Parser.hpp"
+#include "Arg_Parser.hpp"
 #include <iostream>
 
 
 
-Parser Parse_arguments(const std::vector<std::string>& arguments)
+Arg_Parser Parse_arguments(const std::vector<std::string>& arguments)
 {
-    Parser result; //parser struct to return 
+    Arg_Parser result; //parser struct to return 
 
     for (size_t i = 0; i < arguments.size(); ++i) {
         const std::string& arg = arguments[i];
