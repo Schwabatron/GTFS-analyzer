@@ -11,3 +11,5 @@ add_executable(gtfs-analyzer
     src/Arg_Parser.cpp
     src/GTFS_Handler.cpp
 )
+
+target_include_directories(gtfs-analyzer PRIVATE include)

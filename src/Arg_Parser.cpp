@@ -1,31 +1,46 @@
-#include "Arg_Parser.hpp"
+
 #include <iostream>
+#include <string>
+#include "Arg_Parser.hpp"
+#include "cxxopts.hpp"
 
 
 
-Arg_Parser Parse_arguments(const std::vector<std::string>& arguments)
+
+Arg_Parser Parse_arguments(int argc, char* argv[])
 {
     Arg_Parser result; //parser struct to return 
 
-    for (size_t i = 0; i < arguments.size(); ++i) {
-        const std::string& arg = arguments[i];
+    try
+    {
+        cxxopts::Options options("gtfs-analyzer", "CLI tool for GTFS analysis");
+        options.add_options()
+            ("i,input", "Input File", cxxopts::value<std::string>())
+            ("o,output", "Output location", cxxopts::value<std::string>())
+            ("query", "Custom query", cxxopts::value<std::string>())
+            ("export-db", "Export DB path", cxxopts::value<std::string>())
+            ("h,help", "Print usage");
 
-        if (arg == "-i" && i + 1 < arguments.size()) {
-            result.input_file = arguments[i + 1];
-            ++i; // skip value
-        } else if (arg == "-o" && i + 1 < arguments.size()) {
-            result.output_location = arguments[i + 1];
-            ++i;
-        } else if (arg == "--query" && i + 1 < arguments.size()) {
-            result.custom_query = arguments[i + 1];
-            ++i;
-        } else if (arg == "--export-db" && i + 1 < arguments.size()) {
-            result.export_db = arguments[i + 1];
-            ++i;
-        } else {
-            std::cerr << "Unknown or incomplete flag: " << arg << std::endl;
+        auto parsed = options.parse(argc, argv);
+
+        if (parsed.count("help"))
+        {
+            std::cout << options.help() << std::endl;
+            exit(0);
         }
+
+        if (parsed.count("input")) result.input_file = parsed["input"].as<std::string>();
+        if (parsed.count("output")) result.output_location = parsed["output"].as<std::string>();
+        if (parsed.count("query")) result.custom_query = parsed["query"].as<std::string>();
+        if (parsed.count("export-db")) result.export_db = parsed["export-db"].as<std::string>();
+    } 
+    catch (const cxxopts::OptionException& e)
+    {
+        std::cerr << "Error Parsing Options: " << e.what() << std::endl;
+        exit(1);
     }
+
+
     return result;
     
 }

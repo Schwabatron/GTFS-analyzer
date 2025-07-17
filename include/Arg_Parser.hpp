@@ -13,7 +13,7 @@ struct Arg_Parser
 };
 
 
-Arg_Parser Parse_arguments(const std::vector<std::string>& args);
+Arg_Parser Parse_arguments(int charc, char* argv[]);
 
 
 #endif
