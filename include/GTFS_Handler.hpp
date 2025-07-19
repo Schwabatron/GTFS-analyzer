@@ -5,7 +5,7 @@
 
 class GTFS_Handler {
 public:
-    static bool HandleGTFSZip(const std::string& path_to_zip);
+    static bool HandleGTFSZip(const std::string& path_to_folder);
 };
 
 #endif
