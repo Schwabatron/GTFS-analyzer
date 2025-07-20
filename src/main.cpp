@@ -21,9 +21,13 @@ int main(int argc, char *argv[]) {
         std::cerr << "ERROR: GTFS Zip file required" << std::endl;
         return 1;
     }
+    
+    GTFS_Handler handler;
 
-    std::cout << "input folder: " << arguments.input_file << std::endl << "custom query: " << arguments.custom_query << std::endl 
-    << "output location: " << arguments.output_location << std::endl << "export db: " << arguments.export_db << std::endl;
+    std::string db_path = (arguments.export_db.empty()) ? "./data/gtfs.db" : arguments.export_db;
+
+    handler.processGTFSFolderToDB(arguments.input_file, db_path);
+
 
     return 0;
 }

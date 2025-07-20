@@ -3,12 +3,17 @@ project(GTFSAnalyzer)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
+
+
 # Source files
 add_executable(gtfs-analyzer
     src/main.cpp
     src/Arg_Parser.cpp
     src/GTFS_Handler.cpp
+    src/sqlite3.c
 )
+
 
 # Header include directories
 target_include_directories(gtfs-analyzer PRIVATE
