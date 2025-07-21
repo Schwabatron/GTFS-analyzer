@@ -1,10 +1,9 @@
-GTFS analyzer: a free program for analyzing GTFS files
+# GTFS Analyzer
 
-Useage:
+**GTFS Analyzer** is a free, open-source tool for analyzing General Transit Feed Specification (GTFS) files.  
+It allows you to run queries, export data to SQLite, and generate reports from unzipped GTFS datasets.
 
-Options:
+## Usage
 
--i: input folder, this option is required and is used to input the unzipped GTFS folder
---query: A custom query option (not fleshed out enough to write more here will update later)
--o: output directory: choose the directory the report will be written to, if left out then it will default to standard output 
---export-db: a path to where you want the sql lite db to be written to 
+```bash
+gtfs-analyzer -i <input_folder> [--query <query_string>] [-o <output_directory>] [--export-db <path>]
