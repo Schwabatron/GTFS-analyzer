@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     
     GTFS_Handler handler;
 
-    std::string db_path = (arguments.export_db.empty()) ? "./data/gtfs.db" : arguments.export_db;
+    std::string db_path = (arguments.export_db.empty()) ? ":memory:" : arguments.export_db;
 
     handler.processGTFSFolderToDB(arguments.input_file, db_path);
 
