@@ -2,11 +2,8 @@
 #define GTFS_HANDLER_HPP
 
 #include <string>
+#include "sqlite3.h"
 
-class GTFS_Handler {
-public:
-    static bool processGTFSFolderToDB(const std::string& path_to_folder, const std::string& db_path);
-
-};
+sqlite3* processGTFSFolderToDB(const std::string& path_to_folder, const std::string& db_path);
 
 #endif
