@@ -7,28 +7,26 @@
 int main(int argc, char *argv[]) {
     Arg_Parser arguments;
 
-    if(argc != 1) 
+    if(argc != 1) // the user passed more than the program itself as an argument 
     {
-        arguments = Parse_arguments(argc, argv);
-        if(arguments.input_file.empty())
+        arguments = Parse_arguments(argc, argv); //parse the arguments provided by the user 
+        if(arguments.input_file.empty()) 
         {
-            std::cerr << "ERROR: Please input a Zip file" << std::endl;
+            std::cerr << "ERROR: Please input a GTFS folder" << std::endl;
             return 1;
         }
     }
-    else
+    else //no arguments given
     {
-        std::cerr << "ERROR: GTFS Zip file required" << std::endl;
+        std::cerr << "ERROR: GTFS Folder required" << std::endl;
         return 1;
     }
-    
-    GTFS_Handler handler;
 
-    std::string db_path = (arguments.export_db.empty()) ? "./data/gtfs.db" : arguments.export_db;
+    std::string db_path = (arguments.export_db.empty()) ? ":memory:" : arguments.export_db; //if the user did not specify an output path save to RAM to be destroyed when the program is over
+    sqlite3* db = processGTFSFolderToDB(arguments.input_file, db_path); 
+    if (!db) return 1; 
 
-    handler.processGTFSFolderToDB(arguments.input_file, db_path);
-
-
+    sqlite3_close(db); //close the db connection 
     return 0;
 }
  

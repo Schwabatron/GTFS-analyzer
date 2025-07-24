@@ -11,7 +11,10 @@ add_executable(gtfs-analyzer
     src/main.cpp
     src/Arg_Parser.cpp
     src/GTFS_Handler.cpp
+    src/GTFS_makeTables.cpp
+    src/GTFS_parseCSV.cpp
     src/sqlite3.c
+    
 )
 
 
